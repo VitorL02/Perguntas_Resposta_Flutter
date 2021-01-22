@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 main() => runApp(PerguntaApp());
 
-class PerguntaAppState extends State<PerguntaApp> {
-  var perguntaSelecionada = 0;
-  void respostas() {
+class _PerguntaAppState extends State<PerguntaApp> {
+  var _perguntaSelecionada = 0;
+
+  void _respostas() {
     setState(() {
-      perguntaSelecionada++;
+      _perguntaSelecionada++;
     });
     print('Pergunta Respondida');
   }
@@ -24,18 +25,18 @@ class PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas[perguntaSelecionada]),
+            Text(perguntas[_perguntaSelecionada]),
             RaisedButton(
               child: Text('Resposta 1'),
-              onPressed: respostas,
+              onPressed: _respostas,
             ),
             RaisedButton(
               child: Text('Resposta 2'),
-              onPressed: respostas,
+              onPressed: _respostas,
             ),
             RaisedButton(
               child: Text('Resposta 3'),
-              onPressed: respostas,
+              onPressed: _respostas,
             ),
           ],
         ),
@@ -45,7 +46,9 @@ class PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
 }
+
+//Utilizar o "_" e o private do dart,priva pra somente o documento ter acesso
