@@ -52,3 +52,29 @@ class PerguntaApp extends StatefulWidget {
 }
 
 //Utilizar o "_" e o private do dart,priva pra somente o documento ter acesso
+// Quando um elemento for privado, get e set e usado , (this) (get)
+/*
+class Pessoa(){
+String nome;
+String _cpf;
+
+set cpf(String cpf){
+  this.cpf
+}
+
+get cpf{
+  return _cpf;
+}
+}
+
+main(){
+
+var p1= Pessoa();
+p1.nome= 'jao';
+p1.cpg =  '123123123";
+
+print ('${p1.nome} e ${p1.cpf} ');
+
+}
+
+*/
