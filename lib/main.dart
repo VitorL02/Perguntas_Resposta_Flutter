@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './respostas.dart';
 
 main() => runApp(PerguntaApp());
 
@@ -27,14 +28,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada]),
-            RaisedButton(
-              child: Text('Resposta 1'),
-              onPressed: _respostas,
-            ),
-            RaisedButton(
-              child: Text('Resposta 2'),
-              onPressed: _respostas,
-            ),
+            Respostas('Resposta 1'),
+            Respostas('Resposta 2'),
             RaisedButton(
               child: Text('Resposta 3'),
               onPressed: _respostas,
