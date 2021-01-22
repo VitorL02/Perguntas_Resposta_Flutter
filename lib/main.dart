@@ -30,8 +30,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
             Questao(perguntas[_perguntaSelecionada]),
             Respostas('Resposta 1'),
             Respostas('Resposta 2'),
+            Respostas('Resposta 3'),
             RaisedButton(
-              child: Text('Resposta 3'),
+              child: Text('Resposta 4'),
               onPressed: _respostas,
             ),
           ],
