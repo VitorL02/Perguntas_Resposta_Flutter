@@ -19,22 +19,21 @@ class _PerguntaAppState extends State<PerguntaApp> {
     final perguntas = [
       'Qual sua cor Favorita?',
       'Qual seu animal favorito?',
+      'Qual sua estrela favorita',
     ];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
+          backgroundColor: Colors.red[900],
         ),
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada]),
-            Respostas('Resposta 1'),
-            Respostas('Resposta 2'),
-            Respostas('Resposta 3'),
-            RaisedButton(
-              child: Text('Resposta 4'),
-              onPressed: _respostas,
-            ),
+            Respostas('Resposta 1', _respostas),
+            Respostas('Resposta 2', _respostas),
+            Respostas('Resposta 3', _respostas),
           ],
         ),
       ),
@@ -72,5 +71,6 @@ p1.cpg =  '123123123";
 
 print ('${p1.nome} e ${p1.cpf} ');
 
+                                                                                                                         
 }
 */
