@@ -30,6 +30,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
       },
     ];
 
+    List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
+
+    List<Widget> widgets =
+        respostas.map((texto) => Respostas(texto, _respostas)).toList();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -39,9 +44,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada]['texto']),
-            Respostas('Resposta 1', _respostas),
-            Respostas('Resposta 2', _respostas),
-            Respostas('Resposta 3', _respostas),
+            ...widgets,
           ],
         ),
       ),
@@ -54,31 +57,3 @@ class PerguntaApp extends StatefulWidget {
     return _PerguntaAppState();
   }
 }
-
-//Utilizar o "_" e o private do dart,priva pra somente o documento ter acesso
-// Quando um elemento for privado, get e set e usado , (this) (get)
-/*
-class Pessoa(){
-String nome;
-String _cpf;
-
-set cpf(String cpf){
-  this.cpf
-}
-
-get cpf{
-  return _cpf;
-}
-}
-
-main(){
-
-var p1= Pessoa();
-p1.nome= 'jao';
-p1.cpg =  '123123123";
-
-print ('${p1.nome} e ${p1.cpf} ');
-
-                                                                                                                         
-}
-*/
