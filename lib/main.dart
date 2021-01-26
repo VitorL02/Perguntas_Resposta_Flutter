@@ -6,34 +6,37 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  final List<Map<String, Object>> _perguntas = const [
+    {
+      'texto': 'Qual sua cor Favorita?',
+      'respostas': ['Preto', 'Roxo', 'Vermelho', 'Azul'],
+    },
+    {
+      'texto': 'Qual seu animal favorito?',
+      'respostas': ['Cachorro', 'Gato', 'Leão', 'Macaco'],
+    },
+    {
+      'texto': 'Qual sua estrela favorita?',
+      'respostas': ['Sol', 'Sirius', 'Rigel', 'Procyon'],
+    },
+  ];
 
   void _respostas() {
-    setState(() {
-      _perguntaSelecionada++;
-    });
+    if (existePergunta) {
+      setState(() {
+        _perguntaSelecionada++;
+      });
+    }
+  }
+
+  bool get existePergunta {
+    return _perguntaSelecionada < _perguntas.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': 'Qual sua cor Favorita?',
-        'respostas': ['Preto', 'Roxo', 'Vermelho', 'Azul'],
-      },
-      {
-        'texto': 'Qual seu animal favorito?',
-        'respostas': ['Cachorro', 'Gato', 'Leão', 'Macaco'],
-      },
-      {
-        'texto': 'Qual sua estrela favorita?',
-        'respostas': ['Sol', 'Sirius', 'Rigel', 'Procyon'],
-      },
-    ];
-
-    List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
-
-    List<Widget> widgets =
-        respostas.map((texto) => Respostas(texto, _respostas)).toList();
+    List respostas =
+        existePergunta ? _perguntas[_perguntaSelecionada]['respostas'] : null;
 
     return MaterialApp(
       home: Scaffold(
@@ -41,12 +44,16 @@ class _PerguntaAppState extends State<PerguntaApp> {
           title: Text('Perguntas'),
           backgroundColor: Colors.red[900],
         ),
-        body: Column(
-          children: <Widget>[
-            Questao(perguntas[_perguntaSelecionada]['texto']),
-            ...widgets,
-          ],
-        ),
+        body: existePergunta
+            ? Column(
+                children: <Widget>[
+                  Questao(_perguntas[_perguntaSelecionada]['texto']),
+                  ...respostas
+                      .map((texto) => Respostas(texto, _respostas))
+                      .toList(),
+                ],
+              )
+            : null,
       ),
     );
   }
