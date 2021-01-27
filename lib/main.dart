@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './respostas.dart';
+import './Final.dart';
 
 main() => runApp(PerguntaApp());
 
@@ -39,23 +40,22 @@ class _PerguntaAppState extends State<PerguntaApp> {
         existePergunta ? _perguntas[_perguntaSelecionada]['respostas'] : null;
 
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Perguntas'),
-          backgroundColor: Colors.red[900],
-        ),
-        body: existePergunta
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas[_perguntaSelecionada]['texto']),
-                  ...respostas
-                      .map((texto) => Respostas(texto, _respostas))
-                      .toList(),
-                ],
-              )
-            : null,
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text('Perguntas'),
+        backgroundColor: Colors.red[900],
       ),
-    );
+      body: existePergunta
+          ? Column(
+              children: <Widget>[
+                Questao(_perguntas[_perguntaSelecionada]['texto']),
+                ...respostas
+                    .map((texto) => Respostas(texto, _respostas))
+                    .toList(),
+              ],
+            )
+          : Final('Parabéns!'),
+    ));
   }
 }
 
