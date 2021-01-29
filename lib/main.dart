@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './respostas.dart';
+import './Questionario.dart';
 import './Final.dart';
 
 main() => runApp(PerguntaApp());
@@ -10,19 +9,34 @@ class _PerguntaAppState extends State<PerguntaApp> {
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': 'Qual sua cor Favorita?',
-      'respostas': ['Preto', 'Roxo', 'Vermelho', 'Azul'],
+      'respostas': [
+        {'texto': 'Roxo', 'nota': 10},
+        {'texto': 'Preto', 'nota': 5},
+        {'texto': 'Vermelho', 'nota': 3},
+        {'texto': 'Azul', 'nota': 1},
+      ],
     },
     {
       'texto': 'Qual seu animal favorito?',
-      'respostas': ['Cachorro', 'Gato', 'Leão', 'Macaco'],
+      'respostas': [
+        {'texto': 'Cachorro', 'nota': 10},
+        {'texto': 'Gato', 'nota': 5},
+        {'texto': 'Leão', 'nota': 3},
+        {'texto': 'Macaco', 'nota': 1}
+      ],
     },
     {
       'texto': 'Qual sua estrela favorita?',
-      'respostas': ['Sol', 'Sirius', 'Rigel', 'Procyon'],
+      'respostas': [
+        'Sol',
+        'Sirius',
+        'Rigel',
+        'Procyon',
+      ],
     },
   ];
 
-  void _respostas() {
+  void _responder() {
     if (existePergunta) {
       setState(() {
         _perguntaSelecionada++;
@@ -36,9 +50,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    List respostas =
-        existePergunta ? _perguntas[_perguntaSelecionada]['respostas'] : null;
-
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
@@ -46,13 +57,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         backgroundColor: Colors.red[900],
       ),
       body: existePergunta
-          ? Column(
-              children: <Widget>[
-                Questao(_perguntas[_perguntaSelecionada]['texto']),
-                ...respostas
-                    .map((texto) => Respostas(texto, _respostas))
-                    .toList(),
-              ],
+          ? Questionario(
+              perguntas: _perguntas,
+              perguntaSelecionada: _perguntaSelecionada,
+              responder: _responder,
             )
           : Final('Parabéns!'),
     ));

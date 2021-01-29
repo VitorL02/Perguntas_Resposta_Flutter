@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Final extends StatelessWidget {
-  @override
   final String textoFinalizacao;
   Final(this.textoFinalizacao);
-
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(textoFinalizacao,
