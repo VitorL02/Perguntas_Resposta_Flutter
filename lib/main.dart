@@ -65,7 +65,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
               perguntaSelecionada: _perguntaSelecionada,
               quandoResponder: _responder,
             )
-          : Final('Parabéns!'),
+          : Final(_notaTotal),
     ));
   }
 }
