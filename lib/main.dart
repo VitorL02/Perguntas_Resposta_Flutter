@@ -6,6 +6,7 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _notaTotal = 0;
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': 'Qual sua cor Favorita?',
@@ -28,19 +29,21 @@ class _PerguntaAppState extends State<PerguntaApp> {
     {
       'texto': 'Qual sua estrela favorita?',
       'respostas': [
-        'Sol',
-        'Sirius',
-        'Rigel',
-        'Procyon',
+        {'texto': 'Sol', 'nota': 10},
+        {'texto': 'Sirius', 'nota': 5},
+        {'texto': 'Rigel', 'nota': 3},
+        {'texto': 'Procyon', 'nota': 1}
       ],
     },
   ];
 
-  void _responder() {
+  void _responder(int nota) {
     if (existePergunta) {
       setState(() {
         _perguntaSelecionada++;
+        _notaTotal += nota;
       });
+      print(_notaTotal);
     }
   }
 
@@ -60,7 +63,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
           ? Questionario(
               perguntas: _perguntas,
               perguntaSelecionada: _perguntaSelecionada,
-              responder: _responder,
+              quandoResponder: _responder,
             )
           : Final('Parabéns!'),
     ));
