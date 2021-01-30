@@ -37,6 +37,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
     },
   ];
 
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _notaTotal = 0;
+    });
+  }
+
   void _responder(int nota) {
     if (existePergunta) {
       setState(() {
@@ -65,7 +72,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
               perguntaSelecionada: _perguntaSelecionada,
               quandoResponder: _responder,
             )
-          : Final(_notaTotal),
+          : Final(_notaTotal, _reiniciarQuestionario),
     ));
   }
 }
